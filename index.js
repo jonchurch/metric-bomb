@@ -1,5 +1,7 @@
 "use strict"
-var fs = require('fs');
+const fs = require('fs');
+const axios = require('axios')
+const url = 'http://104.131.42.54:3000/'
 
 function readFiles(dirname, onFileContent, onError) {
   fs.readdir(dirname, function(err, filenames) {
@@ -19,9 +21,125 @@ function readFiles(dirname, onFileContent, onError) {
   });
 }
 
-var data = {};
+let data = {};
 readFiles('data/', function parseFiles(filename, content) {
+  filename = filename.split('.')[0];
   data[filename] = JSON.parse(content);
+  console.log(filename);
+
 }, function(err) {
   throw err;
 });
+
+
+const postATE = function(filename, content) {
+  return axios.post(url + 'ate', {
+    algorithm: findAlg(filename),
+    dataset: findDataset(filename),
+    value: toUnits(content.overall.ATE)
+  })
+}
+const postRPE = function(filename, content) {
+  return axios.post(url + 'rte', {
+    algorithm: findAlg(filename),
+    dataset: findDataset(filename),
+    value: toUnits(content.overall.RPE)
+  })
+}
+const postRephoto = function(filename, content) {
+  return axios.post(url + 'rephoto', {
+    algorithm: findAlg(filename),
+    dataset: findDataset(filename),
+    value: toUnits(content.overall.RPE),
+    percent: ''
+  })
+}
+
+
+
+function findAlg(filename) {
+  const algList = {
+    '1.11': [
+      'ESUzp13y', 'YNyJp4Rx', '6XG1q80O', 'rADODkMQ', 'HNQHFZnE', 'PcYUK51Z', 'NZkslp9H'
+    ],
+    '1.12': [
+      'Z31ccOzn', 'kxwBXPU5', '4XKTCJSP', 'SBM9Xdfr', 'p5iRPYEj', 'fmf6lZzQ', 'HXrY30lO'
+    ],
+    '1.13': [
+      'O6cvcqxQ', 'cotdfZOF', '1QoDf1Gv', '5XWogh7u', 'Wgsc25XX', 'NaupS79n', 'rvmbGBrk'
+    ],
+    '1.14': [
+      'm8gkdQum', 'uLFrYSH4', 'zrn6KXEK', '3OuGv1Cz', 'j4fljp2G', 'Ig6Vksp7', 'Bc5vssoX'
+    ],
+    '1.15': [
+      'mwbwndBa', 'El71Li3d', 'FgBlcY5G', 'jgAtTEOv', 'trarT3QU', 'Wz3t2oH3', 'mETnOFgU'
+    ]
+  }
+  if (algList['1.11'].indexOf(filename) > -1) {
+    return '1.11'
+  }
+  if (algList['1.12'].indexOf(filename) > -1) {
+    return '1.12'
+  }
+  if (algList['1.13'].indexOf(filename) > -1) {
+    return '1.13'
+  }
+  if (algList['1.14'].indexOf(filename) > -1) {
+    return '1.14'
+  }
+  if (algList['1.15'].indexOf(filename) > -1) {
+    return '1.15'
+  } else console.log('Error, alg version not found');
+}
+
+function findDataset(filename) {
+  const datasetList = {
+    'desk': [
+      'ESUzp13y', 'Z31ccOzn', 'O6cvcqxQ', 'm8gkdQum', 'mwbwndBa'
+    ],
+    'room': [
+      'YNyJp4Rx', 'kxwBXPU5', 'cotdfZOF', 'uLFrYSH4', 'El71Li3d'
+    ],
+    'flowerbo': [
+      '6XG1q80O', '4XKTCJSP', '1QoDf1Gv', 'zrn6KXEK' , 'FgBlcY5G'
+    ],
+    'longoffice': [
+      'rADODkMQ', 'SBM9Xdfr', '5XWogh7u', '3OuGv1Cz', 'jgAtTEOv'
+    ],
+    '360': [
+      'HNQHFZnE', 'p5iRPYEj', 'Wgsc25XX', 'j4fljp2G', 'trarT3QU'
+    ],
+    'icl0': [
+      'PcYUK51Z', 'fmf6lZzQ', 'NaupS79n', 'Ig6Vksp7', 'Wz3t2oH3'
+    ],
+    'icl2': [
+      'NZkslp9H', 'HXrY30lO', 'rvmbGBrk', 'Bc5vssoX', 'mETnOFgU'
+    ]
+  }
+  if (datasetList.desk.indexOf(filename) > -1) {
+    return 'desk'
+  }
+  if (datasetList.desk.indexOf(filename) > -1) {
+    return 'room'
+  }
+  if (datasetList.desk.indexOf(filename) > -1) {
+    return 'flowerbo'
+  }
+  if (datasetList.desk.indexOf(filename) > -1) {
+    return 'longoffice'
+  }
+  if (datasetList.desk.indexOf(filename) > -1) {
+    return '360'
+  }
+  if (datasetList.desk.indexOf(filename) > -1) {
+    return 'icl0'
+  }
+  if (datasetList.desk.indexOf(filename) > -1) {
+    return 'icl2'
+  } else console.log('Error, could not find dataset name');
+
+}
+
+function toUnits(value) {
+  return (value * 100).toFixed(2)
+}
