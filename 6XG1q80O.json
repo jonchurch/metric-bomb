@@ -1,0 +1,79 @@
+{
+  "performance": {
+    "unwarp": 1.9073486328125e-05,
+    "paravis": 77.06663489341736,
+    "pick_frames": 4.102937936782837,
+    "rgbdtools": 361.32254004478455,
+    "ass_square_runner": 128.29870533943176,
+    "find_islands": 0.5923194885253906,
+    "g2o": 137.15781569480896,
+    "raycaster_preview": 65.23496723175049,
+    "unleveled_cloud": 77.0997564792633,
+    "create_and_zip_all_island_pointclouds": 0.5543231964111328,
+    "structural_comparison": 3.0994415283203125e-05,
+    "level_world": 7.712244510650635,
+    "level_subcubes": 71.9317409992218,
+    "volume_archive": 7.737299203872681,
+    "level_cloud": 1.427422046661377,
+    "rotate_cloud": 0.46065783500671387,
+    "level_mesh": 5.80202054977417,
+    "simplify_mesh": 17.358144760131836,
+    "rotate_mesh": 0.018709421157836914,
+    "phototexturing": 304.635134935379,
+    "split_and_texture": 18.09423542022705,
+    "create_single_texture_mesh": 20.3302583694458,
+    "color_mesh": 0.7431793212890625,
+    "convert_mesh_formats": 3.7812275886535645,
+    "zip_textured_meshes": 2.676016330718994,
+    "strip_normals": 1.2435171604156494,
+    "cloud_preview": 9.424567222595215,
+    "create_las": 12.735291242599487,
+    "create_las_rcp_coordinates": 12.745309591293335,
+    "create_e57": 1.0314323902130127,
+    "record_stats": 1.962343692779541,
+    "freiburg_metrics": 1280.9665410518646,
+    "reconstruction_completeness": 0.15029573440551758,
+    "odometry_kpis": 0.024938583374023438
+  },
+  "ATE": {
+    "Min": 0.008056,
+    "Max": 0.056182,
+    "Q2": 0.033088
+  },
+  "RPE": {
+    "Min": 0.032991,
+    "Max": 4.429098,
+    "Q2": 0.006399
+  },
+  "OR": {
+    "Min": 0.00018250616838599854,
+    "Max": 119.77169786028504,
+    "Q1": 0.07321885849280818,
+    "Q2": 0.15866500285673624,
+    "Q3": 0.2901618747150678
+  },
+  "OT": {
+    "Min": 0.01003502446436711,
+    "Max": 97.68211760479242,
+    "Q1": 0.07321885849280818,
+    "Q2": 0.15866500285673624,
+    "Q3": 0.2901618747150678
+  },
+  "reconstruction_completeness": {
+    "reconstructed_percent": 99.86,
+    "dropped_percent": 0.14
+  },
+  "tracking_percent": {
+    "tracked_percent": 100.0,
+    "dropped_percent": 0.0
+  },
+  "overall": {
+    "PERF": 2634.4225783348083,
+    "RC": 99.86009094088843,
+    "OR": 0.43749555255343403,
+    "OT": 0.6740278180296919,
+    "TRACKING_PERCENT": 100.0,
+    "ATE": 0.009379,
+    "RPE": 0.545273
+  }
+}

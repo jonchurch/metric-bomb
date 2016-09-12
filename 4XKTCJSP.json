@@ -1,0 +1,82 @@
+{
+  "performance": {
+    "unwarp": 2.384185791015625e-05,
+    "paravis": 22.514530181884766,
+    "image_quality": 10.635515451431274,
+    "pick_frames": 1.011897087097168,
+    "rgbdtools": 761.7725832462311,
+    "ass_square_runner": 82.71822953224182,
+    "find_islands": 0.29004621505737305,
+    "g2o": 708.2888698577881,
+    "raycaster_preview": 9.133286714553833,
+    "unleveled_cloud": 70.25271368026733,
+    "create_and_zip_all_island_pointclouds": 0.5166163444519043,
+    "structural_comparison": 2.0503997802734375e-05,
+    "level_world": 7.1769630908966064,
+    "level_subcubes": 59.61811566352844,
+    "volume_archive": 10.136053323745728,
+    "level_cloud": 1.5225155353546143,
+    "rotate_cloud": 0.7070248126983643,
+    "level_mesh": 7.266307830810547,
+    "simplify_mesh": 21.983449459075928,
+    "rotate_mesh": 0.01582956314086914,
+    "phototexturing": 197.56542801856995,
+    "split_and_texture": 25.991699695587158,
+    "create_single_texture_mesh": 22.982381105422974,
+    "color_mesh": 0.7765624523162842,
+    "convert_mesh_formats": 4.03548789024353,
+    "zip_textured_meshes": 3.1519148349761963,
+    "strip_normals": 1.328230381011963,
+    "cloud_preview": 9.977100849151611,
+    "create_las": 13.720274448394775,
+    "create_las_rcp_coordinates": 13.794971942901611,
+    "create_e57": 1.632019281387329,
+    "record_stats": 1.5590908527374268,
+    "freiburg_metrics": 48.390405893325806,
+    "reconstruction_completeness": 0.1433112621307373,
+    "odometry_kpis": 0.024742841720581055,
+    "preview_image_creation": 0.18167328834533691,
+    "generate_video": 48.05580234527588
+  },
+  "ATE": {
+    "Min": 0.006655,
+    "Max": 0.440296,
+    "Q2": 0.070844
+  },
+  "RPE": {
+    "Min": 0.0,
+    "Max": 20.022586,
+    "Q2": 0.006921
+  },
+  "OR": {
+    "Min": 0.0001919187548727876,
+    "Max": 0.04459026956241947,
+    "Q1": 0.0027499474693795673,
+    "Q2": 0.004627820035384846,
+    "Q3": 0.007352514980079489
+  },
+  "OT": {
+    "Min": 0.08143404218950802,
+    "Max": 12.193769430236735,
+    "Q1": 0.0027499474693795673,
+    "Q2": 0.004627820035384846,
+    "Q3": 0.007352514980079489
+  },
+  "reconstruction_completeness": {
+    "reconstructed_percent": 100.0,
+    "dropped_percent": 0.0
+  },
+  "tracking_percent": {
+    "tracked_percent": 100.0,
+    "dropped_percent": 0.0
+  },
+  "overall": {
+    "PERF": 2168.8716893196106,
+    "RC": 100.0,
+    "OR": 0.005641410229997299,
+    "OT": 1.2530662632337322,
+    "TRACKING_PERCENT": 100.0,
+    "ATE": 0.05668,
+    "RPE": 1.581459
+  }
+}
