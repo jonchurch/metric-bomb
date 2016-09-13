@@ -15,6 +15,8 @@ function readFiles(dirname, onFileContent, onError) {
                     onError(err);
                     return;
                 }
+                // console.log('=========CONTENT',content);
+
                 onFileContent(filename, content);
             });
         });
@@ -25,12 +27,15 @@ let data = {};
 readFiles('data/', function massageFiles(filename, content) {
     filename = filename.split('.')[0];
     data[filename] = JSON.parse(content);
+    content = data[filename];
 
     axios.all([postATE(filename, content), postRPE(filename, content)]).
     then(axios.spread(function(ate, rpe) {
-        console.log('ATE', ate)
-        console.log('RPE', rpe)
-    }))
+        // console.log('ATE', ate)
+        // console.log('RPE', rpe)
+    })).catch(function(err) {
+      console.log('OH NO!\n',err);
+    })
 
 }, function(err) {
     throw err;
@@ -45,7 +50,7 @@ const postATE = function(filename, content) {
     })
 }
 const postRPE = function(filename, content) {
-    return axios.post(url + 'rte', {
+    return axios.post(url + 'rpe', {
         algorithm: findAlg(filename),
         dataset: findDataset(filename),
         value: toUnits(content.overall.RPE)
@@ -124,22 +129,22 @@ function findDataset(filename) {
     if (datasetList.desk.indexOf(filename) > -1) {
         return 'desk'
     }
-    if (datasetList.desk.indexOf(filename) > -1) {
+    if (datasetList.room.indexOf(filename) > -1) {
         return 'room'
     }
-    if (datasetList.desk.indexOf(filename) > -1) {
+    if (datasetList.flowerbo.indexOf(filename) > -1) {
         return 'flowerbo'
     }
-    if (datasetList.desk.indexOf(filename) > -1) {
+    if (datasetList.longoffice.indexOf(filename) > -1) {
         return 'longoffice'
     }
-    if (datasetList.desk.indexOf(filename) > -1) {
+    if (datasetList['360'].indexOf(filename) > -1) {
         return '360'
     }
-    if (datasetList.desk.indexOf(filename) > -1) {
+    if (datasetList.icl0.indexOf(filename) > -1) {
         return 'icl0'
     }
-    if (datasetList.desk.indexOf(filename) > -1) {
+    if (datasetList.icl2.indexOf(filename) > -1) {
         return 'icl2'
     } else console.log('Error, could not find dataset name');
 
