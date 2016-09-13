@@ -2,6 +2,7 @@
 const fs = require('fs');
 const axios = require('axios')
 const url = process.env.API_URL
+const API_SECRET = process.env.API_SECRET
 
 function readFiles(dirname, onFileContent, onError) {
     fs.readdir(dirname, function(err, filenames) {
@@ -46,14 +47,16 @@ const postATE = function(filename, content) {
     return axios.post(url + 'ate', {
         algorithm: findAlg(filename),
         dataset: findDataset(filename),
-        value: toUnits(content.overall.ATE)
+        value: toUnits(content.overall.ATE),
+        secret: API_SECRET
     })
 }
 const postRPE = function(filename, content) {
     return axios.post(url + 'rpe', {
         algorithm: findAlg(filename),
         dataset: findDataset(filename),
-        value: toUnits(content.overall.RPE)
+        value: toUnits(content.overall.RPE),
+        secret: API_SECRET
     })
 }
 const postRephoto = function(filename, content) {
@@ -61,7 +64,8 @@ const postRephoto = function(filename, content) {
         algorithm: findAlg(filename),
         dataset: findDataset(filename),
         value: toUnits(content.overall.RPE),
-        percent: "0"
+        percent: "0",
+        secret: API_SECRET
     })
 }
 const postCloud = function(filename, content) {
@@ -78,6 +82,7 @@ const postCloud = function(filename, content) {
         val_8: "0",
         val_9: "0",
         val_10: "0",
+        secret: API_SECRET
 
     })
 }
