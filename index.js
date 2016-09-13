@@ -29,14 +29,13 @@ readFiles('data/', function massageFiles(filename, content) {
     data[filename] = JSON.parse(content);
     content = data[filename];
 
-postATE(filename, content).
-  then(postRPE(filename, content)).
-    then(postRPE(filename, content)).
-      then(postRephoto(filename, content)).
-        then(postCloud(filename, content)).
-          catch(function(err) {
-  console.log('UH OH!',err)
-})
+    axios.all([postATE(filename, content), postRPE(filename, content), postRephoto(filename, content), postCloud(filename, content)]).
+    then(axios.spread(function(ate, rpe) {
+        // console.log('ATE', ate)
+        // console.log('RPE', rpe)
+    })).catch(function(err) {
+      console.log('OH NO!\n',err);
+    })
 
 }, function(err) {
     throw err;
@@ -62,23 +61,23 @@ const postRephoto = function(filename, content) {
         algorithm: findAlg(filename),
         dataset: findDataset(filename),
         value: toUnits(content.overall.RPE),
-        percent: 0
+        percent: "0"
     })
 }
 const postCloud = function(filename, content) {
     return axios.post(url + 'cloud', {
         algorithm: findAlg(filename),
         dataset: findDataset(filename),
-        val_1: 0,
-        val_2: 0,
-        val_3: 0,
-        val_4: 0,
-        val_5: 0,
-        val_6: 0,
-        val_7: 0,
-        val_8: 0,
-        val_9: 0,
-        val_10: 0,
+        val_1: "0",
+        val_2: "0",
+        val_3: "0",
+        val_4: "0",
+        val_5: "0",
+        val_6: "0",
+        val_7: "0",
+        val_8: "0",
+        val_9: "0",
+        val_10: "0",
 
     })
 }
