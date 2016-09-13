@@ -1,7 +1,7 @@
 "use strict"
 const fs = require('fs');
 const axios = require('axios')
-const url = 'http://104.131.42.54:3000/'
+const url = process.env.API_URL
 
 function readFiles(dirname, onFileContent, onError) {
     fs.readdir(dirname, function(err, filenames) {
